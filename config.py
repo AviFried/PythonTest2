@@ -1,3 +1,4 @@
+
 from flask import Flask
 from flask_login import UserMixin, current_user, login_manager
 from flask_login import LoginManager
@@ -7,7 +8,7 @@ from flask_wtf.csrf import CSRFProtect
 from flask_bcrypt import Bcrypt
 
 # Making an isntance of the Flask Class (THis will get passed to app.py)
-app = Flask(__name__)
+app = Flask(__name__,  template_folder='./templates')
 
 bcrypt = Bcrypt(app)
 

@@ -1,14 +1,14 @@
 
 from config import app, db, bcrypt, User, Note
 from flask import Flask, render_template, request, redirect, url_for
-from flask_login import  current_user, logout_user, login_required
+from flask_login import  current_user, logout_user, login_required, login_user
 import forms
 import sys
 sys.path.append('backend/CRUD')
-import create
-import update
-import delete
-import actions
+from CRUD import create
+from CRUD import update
+from CRUD import delete
+from CRUD import actions
 
 @app.route('/', methods = ['GET','POST'])
 @app.route('/index', methods = ['GET','POST'])
