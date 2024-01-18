@@ -25,6 +25,16 @@ files = [
 ]
 
 [[package]]
+name = "app"
+version = "0.0.1"
+description = "a simple egg"
+optional = false
+python-versions = "*"
+files = [
+    {file = "app-0.0.1.zip", hash = "sha256:214549e746d777292d807eec7713c2cea332e08e037c923cd61ee1d5ab7a127f"},
+]
+
+[[package]]
 name = "asgiref"
 version = "3.7.2"
 description = "ASGI specs, helper code, and adapters"
@@ -1061,4 +1071,4 @@ email = ["email-validator"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10.0,<3.11"
-content-hash = "9d7955b120aeb3b905785b0a5ba15eeecd07fa5a9ae8d1d1a60dae191c57df45"
+content-hash = "66021a4efd96cf22246bd5bb86bc4952a323672e68da6ebffc87d8361d3491c8"
