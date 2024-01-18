@@ -15,15 +15,15 @@ bcrypt = Bcrypt(app)
 # Adding cross site forgery protection
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
-csrf = CSRFProtect(app)
+#csrf = CSRFProtect(app)
 
 # User authentication set up
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
+login_manager.init_app(app)
+
+
 
 # Database config
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
