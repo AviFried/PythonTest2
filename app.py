@@ -5,14 +5,19 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import json
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-
+import platform
+import os
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '9OLWxND4o83j4K4iuopO'
 
-with open("passwords.json", "rb") as f:
-    passwords = json.load(f)
-    mongoUser = passwords['mongoUser']
-    mongoPass = passwords['mongoPassword']
+if platform.system() == 'Linux':
+  mongoUser = os.environ['mongoUser']
+  mongoPass = os.environ['mongoPassword']
+else:
+  with open("passwords.json", "rb") as f:
+      passwords = json.load(f)
+      mongoUser = passwords['mongoUser']
+      mongoPass = passwords['mongoPassword']
 uri = "mongodb+srv://"+mongoUser+":"+mongoPass+"@cluster0.udbes1y.mongodb.net/?retryWrites=true&w=majority"
 
 # Create a new client and connect to the server
