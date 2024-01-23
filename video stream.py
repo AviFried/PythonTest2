@@ -1,44 +1,15 @@
-# main.py
-
-from flask import Blueprint, render_template, send_file, request, Response
-from flask_login import login_required, current_user
+from flask import Flask, render_template, send_file, request, Response
 import os
-from client import client
-client = client()
-db = client.totalData
-video_collection = db.videos
-main = Blueprint('main', __name__)
+app = Flask(__name__)
 
-@main.route('/')
-def index():
-    return render_template('index.html')
 
-@main.route('/profile')
-@login_required
-def profile():
-    return render_template('profile.html', name=current_user.name)
-
-@main.route('/thumbnail/<thumbnail_dir>')
-@login_required
-def thumbnail(thumbnail_dir):
-    return send_file(thumbnail_dir)
-
-@main.route('/video/<videoID>')
-@login_required
+@app.route('/video/<videoID>')
 def video(videoID):
     return render_template('video.html', videoID=videoID)
 
-@main.route('/videos')
-@login_required
-def videos():
-    videos = video_collection
-
-    return render_template('videos.html', videos= videos)
-
-@main.route('/video_stream/<videoID>')
-@login_required
+@app.route('/video_stream/<videoID>')
 def video_stream(videoID):
-    video_path = videoID  # Replace with the actual path to your video file
+    video_path = video_files[videoID]  # Replace with the actual path to your video file
 
     range_header = request.headers.get('Range', None)
     video_size = os.path.getsize(video_path)
@@ -70,4 +41,7 @@ def build_partial_response(byte_ranges, video_path):
     return response
 
 def build_full_response(video_path):
-    return send_file(video_path, mimetype='video/mp4', cache_timeout=-1)
+    return send_file(video_path, mimetype='video/mp4')
+
+if __name__ == '__main__':
+    app.run(debug=True)

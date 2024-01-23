@@ -83,7 +83,7 @@ def signup():
         hashed_password = generate_password_hash(password, method='pbkdf2:sha1')
 
         # Create a new user document
-        new_user = {'username': username, 'password': hashed_password}
+        new_user = {'username': username, 'password': hashed_password, 'name': name}
 
         # Insert the new user into the 'users' collection in MongoDB
         users_collection.insert_one(new_user)

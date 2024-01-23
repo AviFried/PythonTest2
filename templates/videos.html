@@ -1,0 +1,25 @@
+<!-- templates/videos.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Video Gallery</h2>
+
+    <div class="row">
+        {% for video in videos.find() %}
+            <div class="col-5">
+                <div class="card">
+                    <img src="{{ url_for('main.thumbnail', thumbnail_dir=video['thumbnail']) }}" class="card-img-top" alt="{{ video['directory'] }}">
+                    <div class="card-body">
+                        <a href="{{ url_for('main.video', videoID=video['directory']) }}" class="card_title">{{ video['directory'] }}</a>
+                    </div>
+                </div>
+            </div>
+            {% if loop.index % 5 == 0 %}
+                </div><div class="row">
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
