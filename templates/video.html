@@ -1,15 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Streaming Example</title>
-</head>
-<body>
-    <h1>Video Streaming Example</h1>
-    <video width="640" height="360" controls>
+<!-- templates/videos.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid mt-5">
+   <div class="row mt-5">
+    <div class="col text-center">
+        <h1>Videos Streaming Example</h1>
+    </div>
+</div>
+
+    <div class="row">
+        <div class="col text-center">
+   <video class="img-fluid" controls width="640" height="360">
         <source src="{{ url_for('main.video_stream', videoID = videoID) }}" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-</body>
-</html>
+            </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -24,10 +24,13 @@ def updateVideos():
 
         if not existing:
             # Insert the video into the database
-            video_collection.insert_one({"directory": video_path, "thumbnail": thumbnail_path})
+            video_collection.insert_one({"directory": video_path, "thumbnail": thumbnail_path, "title": video_filename.split(".")[0]})
 
             # Generate and save a thumbnail
-        generate_thumbnail(video_path, thumbnail_path)
+            generate_thumbnail(video_path, thumbnail_path)
+        else:
+            generate_thumbnail(video_path, thumbnail_path)
+            video_collection.update_one({"directory": video_path}, {"$set": {"thumbnail": thumbnail_path, "title": video_filename.split(".")[0]}})
 
 
 def generate_thumbnail(video_path, thumbnail_path):
@@ -37,7 +40,7 @@ def generate_thumbnail(video_path, thumbnail_path):
     cap.release()
 
     # Resize the frame (adjust dimensions as needed)
-    resized_frame = cv2.resize(frame, (640, 480))
+    resized_frame = cv2.resize(frame, (640, 360))
 
     # Save the resized frame as a thumbnail
     cv2.imwrite(thumbnail_path, resized_frame)
