@@ -1,0 +1,52 @@
+<!-- templates/videos.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row mt-5">
+        <div class="col text-center">
+            <h1>Videos Streaming Example</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col text-center">
+            <video class="img-fluid" controls width="640" height="360">
+                <source src="{{ url_for('main.video_stream', videoID=videoID) }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-8 offset-md-2">
+            <h3>Comments</h3>
+
+            <!-- Display existing comments -->
+            {% for comment in video.comments %}
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <p class="card-text">{{ comment.text }}</p>
+                        <small class="text-muted">Posted by {{ comment.user.name }} on {{ comment.timestamp }}</small>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <!-- Add a new comment form -->
+            {% if current_user.is_authenticated %}
+                <form method="post" action="{{ url_for('main.add_comment', videoID=videoID) }}">
+
+                    <div class="form-group">
+                        <label for="comment">Add a comment:</label>
+                        <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Comment</button>
+                </form>
+            {% else %}
+                <p class="text-muted">Login to add comments.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

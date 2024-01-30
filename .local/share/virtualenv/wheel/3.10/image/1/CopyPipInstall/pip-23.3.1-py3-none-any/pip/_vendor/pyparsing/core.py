@@ -2,9 +2,20 @@
 # core.py
 #
 
-from collections import deque
+import copy
 import os
-import typing
+import string
+import traceback
+import types
+import warnings
+from abc import ABC, abstractmethod
+from collections import deque
+from collections.abc import Iterable
+from enum import Enum
+from functools import wraps
+from operator import itemgetter
+from pathlib import Path
+from threading import RLock
 from typing import (
     Any,
     Callable,
@@ -18,37 +29,21 @@ from typing import (
     Union,
     cast,
 )
-from abc import ABC, abstractmethod
-from enum import Enum
-import string
-import copy
-import warnings
-import re
-import sys
-from collections.abc import Iterable
-import traceback
-import types
-from operator import itemgetter
-from functools import wraps
-from threading import RLock
-from pathlib import Path
 
+from .actions import *
+from .exceptions import *
+from .results import ParseResults, _ParseResultsWithOffset
+from .unicode import pyparsing_unicode
 from .util import (
     _FifoCache,
     _UnboundedCache,
     __config_flags,
     _collapse_string_to_ranges,
     _escape_regex_range_chars,
-    _bslash,
     _flatten,
     LRUMemo as _LRUMemo,
     UnboundedMemo as _UnboundedMemo,
-    replaced_by_pep8,
 )
-from .exceptions import *
-from .actions import *
-from .results import ParseResults, _ParseResultsWithOffset
-from .unicode import pyparsing_unicode
 
 _MAX_INT = sys.maxsize
 str_type: Tuple[type, ...] = (str, bytes)
@@ -1771,7 +1766,6 @@ class ParserElement(ABC):
             patt.parse_string('ablaj /* comment */ lskjd')
             # -> ['ablaj', 'lskjd']
         """
-        import typing
 
         if isinstance(other, str_type):
             other = Suppress(other)

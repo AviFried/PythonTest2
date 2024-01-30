@@ -1,0 +1,43 @@
+<!-- templates/videos.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-xs">
+
+        </div>
+        <div class="col-lg">
+
+
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <h1>Videos</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                {% for video in videos %}
+                <div class="col mx-auto">
+                    <a href="{{ url_for('main.video', videoID=video['id']) }}">
+                        <div class="card">
+                            <img src="{{ url_for('main.thumbnail', thumbnail_dir=video['thumbnail']) }}"
+                                 class="card-img-top" alt="{{ video['directory'] }}">
+                            <div class="card-body">
+                                <h5 class="card_title">{{ video['title'] }}</h5>
+                                <p class="card-text">{{ video['description'] }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% if loop.index % 5 == 0 %}
+            </div>
+            <div class="row">
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

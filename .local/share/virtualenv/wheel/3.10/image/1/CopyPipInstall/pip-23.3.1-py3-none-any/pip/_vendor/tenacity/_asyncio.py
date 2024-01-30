@@ -18,7 +18,6 @@
 import functools
 import sys
 import typing as t
-from asyncio import sleep
 
 from pip._vendor.tenacity import AttemptManager
 from pip._vendor.tenacity import BaseRetrying

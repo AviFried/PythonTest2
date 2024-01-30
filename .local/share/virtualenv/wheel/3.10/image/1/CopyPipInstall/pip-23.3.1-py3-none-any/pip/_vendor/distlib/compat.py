@@ -22,7 +22,6 @@ if sys.version_info[0] < 3:  # pragma: no cover
     from types import FileType as file_type
     import __builtin__ as builtins
     import ConfigParser as configparser
-    from urlparse import urlparse, urlunparse, urljoin, urlsplit, urlunsplit
     from urllib import (urlretrieve, quote as _quote, unquote, url2pathname,
                         pathname2url, ContentTooShortError, splittype)
 
@@ -32,15 +31,11 @@ if sys.version_info[0] < 3:  # pragma: no cover
         return _quote(s)
 
     import urllib2
-    from urllib2 import (Request, urlopen, URLError, HTTPError,
-                         HTTPBasicAuthHandler, HTTPPasswordMgr,
-                         HTTPHandler, HTTPRedirectHandler,
-                         build_opener)
+
     if ssl:
-        from urllib2 import HTTPSHandler
+        pass
     import httplib
     import xmlrpclib
-    import Queue as queue
     from HTMLParser import HTMLParser
     import htmlentitydefs
     raw_input = raw_input
@@ -66,18 +61,10 @@ else:  # pragma: no cover
     text_type = str
     from io import TextIOWrapper as file_type
     import builtins
-    import configparser
     import shutil
-    from urllib.parse import (urlparse, urlunparse, urljoin, quote,
-                              unquote, urlsplit, urlunsplit, splittype)
-    from urllib.request import (urlopen, urlretrieve, Request, url2pathname,
-                                pathname2url,
-                                HTTPBasicAuthHandler, HTTPPasswordMgr,
-                                HTTPHandler, HTTPRedirectHandler,
-                                build_opener)
+
     if ssl:
         from urllib.request import HTTPSHandler
-    from urllib.error import HTTPError, URLError, ContentTooShortError
     import http.client as httplib
     import urllib.request as urllib2
     import xmlrpc.client as xmlrpclib
@@ -312,7 +299,6 @@ except ImportError: # pragma: no cover
             return 'IronPython'
         return 'CPython'
 
-import shutil
 import sysconfig
 
 try:
@@ -475,7 +461,7 @@ except ImportError:
 if sys.version_info[:2] < (3, 4):
     unescape = HTMLParser().unescape
 else:
-    from html import unescape
+    pass
 
 try:
     from collections import ChainMap

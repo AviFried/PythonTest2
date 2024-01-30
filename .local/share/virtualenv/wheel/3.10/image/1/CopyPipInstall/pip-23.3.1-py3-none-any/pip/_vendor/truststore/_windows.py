@@ -1,8 +1,6 @@
 import contextlib
 import ssl
 import typing
-from ctypes import WinDLL  # type: ignore
-from ctypes import WinError  # type: ignore
 from ctypes import (
     POINTER,
     Structure,
@@ -15,6 +13,8 @@ from ctypes import (
     pointer,
     sizeof,
 )
+from ctypes import WinDLL  # type: ignore
+from ctypes import WinError  # type: ignore
 from ctypes.wintypes import (
     BOOL,
     DWORD,

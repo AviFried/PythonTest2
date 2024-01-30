@@ -1,9 +1,9 @@
 # util.py
-import inspect
-import warnings
-import types
 import collections
+import inspect
 import itertools
+import types
+import warnings
 from functools import lru_cache, wraps
 from typing import Callable, List, Union, Iterable, TypeVar, cast
 

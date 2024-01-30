@@ -31,6 +31,7 @@ from .charsetprober import CharSetProber
 from .enums import ProbingState
 from .sbcharsetprober import SingleByteCharSetProber
 
+
 # This prober doesn't actually recognize a language or a charset.
 # It is a helper prober for the use of the Hebrew model probers
 

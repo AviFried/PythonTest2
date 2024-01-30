@@ -4,6 +4,7 @@ import re
 import sys
 import typing
 
+from .unicode import pyparsing_unicode as ppu
 from .util import (
     col,
     line,
@@ -11,7 +12,6 @@ from .util import (
     _collapse_string_to_ranges,
     replaced_by_pep8,
 )
-from .unicode import pyparsing_unicode as ppu
 
 
 class ExceptionWordUnicode(ppu.Latin1, ppu.LatinA, ppu.LatinB, ppu.Greek, ppu.Cyrillic):

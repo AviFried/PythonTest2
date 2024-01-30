@@ -1,7 +1,6 @@
 import os.path
 import platform
 import re
-import sys
 import textwrap
 from abc import ABC, abstractmethod
 from pathlib import Path
@@ -36,7 +35,6 @@ from pip._vendor.pygments.token import (
     Whitespace,
 )
 from pip._vendor.pygments.util import ClassNotFound
-
 from pip._vendor.rich.containers import Lines
 from pip._vendor.rich.padding import Padding, PaddingDimensions
 

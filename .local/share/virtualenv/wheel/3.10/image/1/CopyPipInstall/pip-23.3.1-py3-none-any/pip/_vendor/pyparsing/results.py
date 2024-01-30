@@ -1,13 +1,12 @@
 # results.py
+import pprint
 from collections.abc import (
     MutableMapping,
     Mapping,
     MutableSequence,
     Iterator,
-    Sequence,
     Container,
 )
-import pprint
 from typing import Tuple, Any, Dict, Set, List
 
 str_type: Tuple[type, ...] = (str, bytes)

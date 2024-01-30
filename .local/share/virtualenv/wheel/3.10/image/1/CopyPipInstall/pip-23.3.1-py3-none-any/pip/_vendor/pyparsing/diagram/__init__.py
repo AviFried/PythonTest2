@@ -1,7 +1,7 @@
 # mypy: ignore-errors
-import railroad
-from pip._vendor import pyparsing
+import inspect
 import typing
+from io import StringIO
 from typing import (
     List,
     NamedTuple,
@@ -12,10 +12,10 @@ from typing import (
     Set,
     Iterable,
 )
-from jinja2 import Template
-from io import StringIO
-import inspect
 
+import railroad
+from jinja2 import Template
+from pip._vendor import pyparsing
 
 jinja2_template_source = """\
 {% if not embed %}
