@@ -30,6 +30,10 @@
                <li class="nav-item">
                   <a class="nav-link" href="{{ url_for('main.videos') }}">Videos</a>
                </li>
+               <li class="nav-item">
+                   <a class="nav-link" href="{{ url_for('main.upload') }}">Upload Video</a>
+               </li>
+
                {% endif %}
                {% if not current_user.is_authenticated %}
                <li class="nav-item">
@@ -49,6 +53,10 @@
                </li>
                {% endif %}
             </ul>
+            <form class="form-inline" action="{{ url_for('main.search') }}">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"  name="query">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
          </div>
       </nav>
       </header>

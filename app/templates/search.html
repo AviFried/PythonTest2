@@ -1,4 +1,4 @@
-<!-- templates/videos.html -->
+<!-- templates/search_results.html -->
 
 {% extends "base.html" %}
 
@@ -8,21 +8,24 @@
         <div class="col-xs">
 
             <p>Sort by:</p>
-            <a role="button" class="btn btn-primary" href="{{ url_for('main.videos', sort_by='name') }}">Name</a>
-            <a role="button" class="btn btn-primary" href="{{ url_for('main.videos', sort_by='date') }}">Date Uploaded</a>
+            <a role="button" class="btn btn-primary" href="{{ url_for('main.search', sort_by='name', query = query) }}">Name</a>
+            <a role="button" class="btn btn-primary" href="{{ url_for('main.search', sort_by='date', query = query) }}">Date
+                Uploaded</a>
         </div>
         <div class="col-lg">
 
 
             <div class="row mt-5">
                 <div class="col text-center">
-                    <h1>Videos</h1>
+                    <h2>Search Results for "{{ query }}"</h2>
                 </div>
             </div>
 
+
+            {% if results %}
             <div class="row">
-                {% for video in videos %}
-                <div class="col mx-auto">
+            {% for video in results %}
+            <div class="col mx-auto">
                     <a href="{{ url_for('main.video', videoID=video.id) }}">
                         <div class="card">
                             <img src="{{ url_for('main.thumbnail', thumbnail_dir=video.thumbnail) }}"
@@ -38,9 +41,11 @@
             </div>
             <div class="row">
                 {% endif %}
-                {% endfor %}
-            </div>
+                                {% endfor %}
+            {% else %}
+            <p>No results found.</p>
+            {% endif %}
         </div>
+        {% endblock %}
     </div>
 </div>
-{% endblock %}
