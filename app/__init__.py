@@ -32,6 +32,9 @@ def create_app():
     from app.auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
 
+    # blueprint for non-auth parts of app
+    from app.video import video as video_blueprint
+    app.register_blueprint(video_blueprint)
 
     return app
 

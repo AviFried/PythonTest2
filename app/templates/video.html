@@ -12,22 +12,22 @@
 
     <div class="row">
         <div class="col-s">
-            <h1>.              .</h1>
+            <h1>. .</h1>
         </div>
         <div class="col text-center">
             <video class="img-fluid " controls>
-                <source src="{{ url_for('main.video_stream', videoID=videoID) }}" type="video/mp4">
+                <source src="{{ url_for('video.video_stream', videoID=videoID) }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
-        <div class="col-s"><h1>.                .</h1></div>
+        <div class="col-s"><h1>. .</h1></div>
     </div>
 
     <div class="row mt-5">
         <div class="col-md-8 offset-md-2">
             <h2>{{video.title}}</h2>
             <h3>{{video.description}}</h3>
-            <a class="btn btn-danger" href="{{  url_for('main.delete_video', video_id=video.id)  }}" role="button">Delete</a>
+            <a class="btn btn-danger" href="{{  url_for('video.delete_video', video_id=video.id)  }}" role="button">Delete</a>
 
         </div>
     </div>
@@ -37,26 +37,26 @@
 
             <!-- Display existing comments -->
             {% for comment in video.comments %}
-                <div class="card mb-2">
-                    <div class="card-body">
-                        <p class="card-text">{{ comment.text }}</p>
-                        <small class="text-muted">Posted by {{ comment.user.name }} on {{ comment.timestamp }}</small>
-                    </div>
+            <div class="card mb-2">
+                <div class="card-body">
+                    <p class="card-text">{{ comment.text }}</p>
+                    <small class="text-muted">Posted by {{ comment.user.name }} on {{ comment.timestamp }}</small>
                 </div>
+            </div>
             {% endfor %}
 
             <!-- Add a new comment form -->
             {% if current_user.is_authenticated %}
-                <form method="post" action="{{ url_for('main.add_comment', videoID=videoID) }}">
+            <form method="post" action="{{ url_for('main.add_comment', videoID=videoID) }}">
 
-                    <div class="form-group">
-                        <label for="comment">Add a comment:</label>
-                        <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit Comment</button>
-                </form>
+                <div class="form-group">
+                    <label for="comment">Add a comment:</label>
+                    <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Comment</button>
+            </form>
             {% else %}
-                <p class="text-muted">Login to add comments.</p>
+            <p class="text-muted">Login to add comments.</p>
             {% endif %}
         </div>
     </div>

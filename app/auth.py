@@ -9,6 +9,7 @@ from .models import User
 
 auth = Blueprint('auth', __name__)
 
+
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -26,6 +27,7 @@ def login():
             return redirect(url_for('auth.login'))
 
     return render_template('login.html')
+
 
 @auth.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -55,10 +57,9 @@ def signup():
 
     return render_template('signup.html')
 
+
 @auth.route('/logout')
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
-
-

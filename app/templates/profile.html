@@ -20,7 +20,7 @@
                     {% for comment in user.comments %}
                         <li class="list-group-item">
                             {{ comment.text }}
-                            <a href="{{ url_for('main.video', videoID=comment.video.id) }}">
+                            <a href="{{ url_for('video.watch', videoID=comment.video.id) }}">
                                 <span class="badge badge-secondary">{{ comment.video.title }}</span>
                             </a>
                             <small class="text-muted">{{ comment.timestamp }}</small>
@@ -38,11 +38,11 @@
                     {% for video in user.videos %}
                         <li class="list-group-item">
                             {{ video.title }}
-                            <a href="{{ url_for('main.video', videoID=video.id) }}">
+                            <a href="{{ url_for('video.watch', videoID=video.id) }}">
                                 <span class="badge badge-secondary">{{ video.title }}</span>
                             </a>
                             <small class="text-muted">{{ video.timestamp }}</small>
-                            <a class="btn btn-danger" href="{{  url_for('main.delete_video', video_id=video.id)  }}" role="button">Delete</a>
+                            <a class="btn btn-danger" href="{{  url_for('video.delete_video', video_id=video.id)  }}" role="button">Delete</a>
                         </li>
                     {% endfor %}
                 </ul>
